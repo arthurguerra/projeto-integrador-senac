@@ -57,10 +57,12 @@ public class CampeonatoDaoImpl {
     
     public Campeonato pesquisarPorId(Integer id){
         sql = "SELECT * FROM campeonato WHERE id=?";
+        Campeonato x = null;
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
+            resultado = ps.executeQuery();
             if(resultado.next()){
                 campeonato = new Campeonato();
                 campeonato.setId(resultado.getInt("id"));

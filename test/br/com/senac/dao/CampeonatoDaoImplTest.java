@@ -37,10 +37,13 @@ public class CampeonatoDaoImplTest {
     
     @Test
     public void testPesquisarPorId(){
-        System.out.println("PESQUISAR POR ID");
+        System.out.println("xxx");
         campeonato = campeonatoDaoImpl.pesquisarPorId(2);
-        imprimeCampeonato(campeonato);
+        assertNotNull(campeonato);
+        System.out.println(campeonato.getNome());
+        //imprimeCampeonato(campeonato);
     }
+    
     
     private void imprimeCampeonato(Campeonato camp) {
         System.out.println("ID: "+camp.getId());
