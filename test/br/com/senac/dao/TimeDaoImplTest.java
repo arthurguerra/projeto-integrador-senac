@@ -6,8 +6,11 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Campeonato;
+import br.com.senac.entidade.Modalidade;
 import br.com.senac.entidade.Time;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,19 +22,55 @@ public class TimeDaoImplTest {
 
     private Time time;
     private TimeDaoImpl timeDaoImpl;
-    
+    private Modalidade modalidade;
+    private ModalidadeImpl modalidadeImpl;
 
     public TimeDaoImplTest() {
         timeDaoImpl = new TimeDaoImpl();
+        modalidadeImpl = new ModalidadeImpl();
     }
 
-    @Test
+//    @Test 
     public void testSalvar() throws Exception {
-       time = new Time("TESTE X");
-       Campeonato campeonato = new Campeonato("TESTE", "BRASIL", new Date());
-       time.setCampeonato(campeonato);
+        System.out.println("salvar");
+        time = new Time();
+        time.setNome("Atlético Paranaense");
+        modalidade = modalidadeImpl.pesquisarPorId(1);
+        time.setIdmodalidade(modalidade.getId());
         timeDaoImpl.salvar(time);
-        System.out.println("time salvo com sucesso");
     }
 
+//    @Test
+    public void testAlterar() {
+        System.out.println("alterar");
+        time = timeDaoImpl.pesquisarPorId(4);
+        time.setNome("Vasco");
+        time.setIdmodalidade(4);
+        timeDaoImpl.alterar(time);
+    }
+    
+//    @Test
+    public void testPesquisarPorId(){
+        System.out.println("Pesquisar por ID");
+        time = timeDaoImpl.pesquisarPorId(2);
+        imprimeTime(time);
+    }
+    
+    @Test
+    public void testPesquisarPorNome() {
+        System.out.println("Pesquisar por NOME");
+        List<Time> times = new LinkedList<>();
+        times = timeDaoImpl.pesquisarPorNome("Atlético");
+        times.stream().forEach((time) -> {
+            imprimeTime(time);
+        });
+    }
+    
+    private void imprimeTime(Time time){
+        System.out.println("ID: "+time.getId());
+        System.out.println("Nome: "+time.getNome());
+        System.out.println("ID Modalidade: "+time.getIdmodalidade());
+        System.out.println("--------------------------------");
+    }
+    
 }
