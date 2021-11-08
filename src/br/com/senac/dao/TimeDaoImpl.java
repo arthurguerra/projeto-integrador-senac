@@ -9,6 +9,8 @@ import br.com.senac.entidade.Time;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -20,24 +22,75 @@ public class TimeDaoImpl {
     private PreparedStatement ps;
     private ResultSet resultado;
     private String sql;
-    
+    private Time time;
     
 
     public void salvar(Time time) {
-        sql = "INSERT INTO time(nome, campeonato) VALUES (?, ?)";
+        sql = "INSERT INTO time(nome, idmodalidade) VALUES (?, ?)";
 
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setString(1, time.getNome());
-            ps.setObject(2, time.getCampeonato());
+            ps.setInt(2, time.getIdmodalidade());
             ps.executeUpdate();
-//            resultado = ps.getGeneratedKeys();
-//            resultado.next();
-//            time.setId(resultado.getInt(1));
         } catch (Exception e) {
-            System.out.println("erro ao SALVAR time " + e.getMessage());
+            System.out.println("Erro ao SALVAR time " + e.getMessage());
         }
+    }
+    
+    public void alterar(Time time) {
+        sql = "UPDATE time SET nome=?, idmodalidade=? WHERE id=?";
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, time.getNome());
+            ps.setInt(2, time.getIdmodalidade());
+            ps.setInt(3, time.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Erro ao ALTERAR time: "+e.getMessage());
+        }
+    }
+    
+    public Time pesquisarPorId(Integer id) {
+        sql = "SELECT * FROM time WHERE id=?";
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            resultado = ps.executeQuery();
+            if(resultado.next()){
+               time = new Time();
+               time.setId(resultado.getInt("id"));
+               time.setNome(resultado.getString("nome"));
+               time.setIdmodalidade(resultado.getInt("idmodalidade"));               
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao PESQUISAR time POR ID: "+e.getMessage());
+        }
+        return time;
+    }
+    
+    public List<Time> pesquisarPorNome(String nome) {
+        sql = "SELECT * FROM time WHERE nome LIKE ?";
+        List<Time> times = new LinkedList<>();
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, "%"+nome+"%");
+            resultado = ps.executeQuery();
+            while(resultado.next()){
+                time = new Time();
+                time.setId(resultado.getInt("id"));
+                time.setNome(resultado.getString("nome"));
+                time.setIdmodalidade(resultado.getInt("idmodalidade"));
+                times.add(time);
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao PESQUISAR time POR NOME: "+e.getMessage());
+        }
+        return times;
     }
 
 }
