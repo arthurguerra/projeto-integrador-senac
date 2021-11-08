@@ -13,6 +13,7 @@ public class Jogador {
 
     private Integer id;
     private String nome;
+    private int idtime;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -21,6 +22,14 @@ public class Jogador {
     public Jogador() {
 
     }
+
+    public int getIdtime() {
+        return idtime;
+    }
+
+    public void setIdtime(int idtime) {
+        this.idtime = idtime;
+    }    
 
     public Integer getId() {
         return id;

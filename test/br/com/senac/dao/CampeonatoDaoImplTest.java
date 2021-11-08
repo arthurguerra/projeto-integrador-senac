@@ -23,14 +23,31 @@ public class CampeonatoDaoImplTest {
         campeonatoDaoImpl = new CampeonatoDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() throws Exception {
-        System.out.println("SALVAR");
-//        campeonato = new Campeonato("TESTA SALVAR CAMPEONATO", "PAÍS", new Date());
-//        campeonatoDaoImpl.salvarTime(campeonato, id, null);
-        
-        campeonato = new Campeonato("TESTE SALVAR", "TESTE SALVAR", new Date());
+        System.out.println("SALVAR");     
+        campeonato = new Campeonato("Copa Libertadores da América", "América do Sul", new Date());
         campeonatoDaoImpl.salvar(campeonato);
+    }
+    
+//    @Test
+//    public void testAlterar() {
+//        System.out.println("ALTERAR");        
+//}
+    
+    @Test
+    public void testPesquisarPorId(){
+        System.out.println("PESQUISAR POR ID");
+        campeonato = campeonatoDaoImpl.pesquisarPorId(2);
+        imprimeCampeonato(campeonato);
+    }
+    
+    private void imprimeCampeonato(Campeonato camp) {
+        System.out.println("ID: "+camp.getId());
+        System.out.println("Nome: "+camp.getNome());
+        System.out.println("Localidade: "+camp.getLocalidade());
+        System.out.println("Data: "+camp.getDtcampeonato());
+        System.out.println("------------------------------------");
     }
     
 }
