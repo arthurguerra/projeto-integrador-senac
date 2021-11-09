@@ -22,8 +22,8 @@ public class CampeonatoDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Campeonato campeonato;
-    
-    public void salvar(Campeonato campeonato){
+
+    public void salvar(Campeonato campeonato) {
         sql = "INSERT INTO campeonato(nome, localidade, dtcampeonato) VALUES (?, ?, ?)";
         try {
             conexao = FabricaConexao.abreConexao();
@@ -39,7 +39,7 @@ public class CampeonatoDaoImpl {
             System.out.println("erro ao SALVAR " + e.getMessage());
         }
     }
-    
+
     public void alterar(Campeonato campeonato) {
         sql = "UPDATE campeonato SET nome=?, localidade=?, dtcampeonato=? WHERE id=?";
         try {
@@ -51,11 +51,11 @@ public class CampeonatoDaoImpl {
             ps.setInt(4, campeonato.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-            System.err.println("Erro ao ALTERAR campeonato: "+e.getMessage());
+            System.err.println("Erro ao ALTERAR campeonato: " + e.getMessage());
         }
     }
-    
-    public Campeonato pesquisarPorId(Integer id){
+
+    public Campeonato pesquisarPorId(Integer id) {
         sql = "SELECT * FROM campeonato WHERE id=?";
         Campeonato x = null;
         //TESTE
@@ -64,7 +64,7 @@ public class CampeonatoDaoImpl {
             ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
             resultado = ps.executeQuery();
-            if(resultado.next()){
+            if (resultado.next()) {
                 campeonato = new Campeonato();
                 campeonato.setId(resultado.getInt("id"));
                 campeonato.setNome(resultado.getString("nome"));
@@ -72,8 +72,22 @@ public class CampeonatoDaoImpl {
                 campeonato.setDtcampeonato(resultado.getDate("dtcampeonato"));
             }
         } catch (Exception e) {
-            System.err.println("Erro ao PESQUISAR campeonato POR ID: "+e.getMessage());
+            System.err.println("Erro ao PESQUISAR campeonato POR ID: " + e.getMessage());
         }
         return campeonato;
     }
+
+    public void excluir(int id) {
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement("DELETE FROM campeonato WHERE id = ?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao deletar campeonato" + e.getMessage());
+        }
+
+    }
+
 }
