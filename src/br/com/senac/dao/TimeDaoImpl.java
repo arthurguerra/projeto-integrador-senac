@@ -92,5 +92,25 @@ public class TimeDaoImpl {
         }
         return times;
     }
+    
+        public List<Time> listar() {
+        sql = "SELECT * FROM time";
+        List<Time> times = new ArrayList<>();
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            resultado = ps.executeQuery();
+            while(resultado.next()){
+                time = new Time();
+                time.setId(resultado.getInt("id"));
+                time.setNome(resultado.getString("nome"));
+                time.setIdmodalidade(resultado.getInt("idmodalidade"));
+                times.add(time);
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao LISTAR times: "+e.getMessage());
+        }
+        return times;
+    }  
 
 }
