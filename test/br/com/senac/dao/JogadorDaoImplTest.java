@@ -63,7 +63,7 @@ public class JogadorDaoImplTest {
         });
     }
 
-    @Test
+//    @Test
     public void testListar() {
         System.out.println("listar");
         List<Jogador> jogadores = new ArrayList();

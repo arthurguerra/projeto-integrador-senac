@@ -70,7 +70,7 @@ public class ModalidadeImplTest {
 //    @Test
     public void testExcluir() {
         System.out.println("excluir");
-        modalidadeImpl.excluir(5);
+        modalidadeImpl.excluir(4);
     }
     
     public void imprimeModalidade(Modalidade modalidade){
