@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,8 +59,6 @@ public class CampeonatoDaoImpl {
 
     public Campeonato pesquisarPorId(Integer id) {
         sql = "SELECT * FROM campeonato WHERE id=?";
-        Campeonato x = null;
-        //TESTE
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
@@ -77,17 +77,57 @@ public class CampeonatoDaoImpl {
         return campeonato;
     }
 
+    public List<Campeonato> pesquisarPorNome(String nome) {
+        sql = "SELECT * FROM campeonato WHERE nome LIKE ?";
+        List<Campeonato> campeonatos = new ArrayList();
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            ps.setString(1, "%"+nome+"%");
+            resultado = ps.executeQuery();
+            while (resultado.next()) {
+                campeonato = new Campeonato();
+                campeonato.setId(resultado.getInt("id"));
+                campeonato.setNome(resultado.getString("nome"));
+                campeonato.setLocalidade(resultado.getString("localidade"));
+                campeonato.setDtcampeonato(new Date(resultado.getDate("dtcampeonato").getTime()));
+                campeonatos.add(campeonato);
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao listar campeonatos: " + e.getMessage());
+        }
+        return campeonatos;
+    }
+
+    public List<Campeonato> listar() {
+        sql = "SELECT * FROM campeonato";
+        List<Campeonato> campeonatos = new ArrayList();
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            resultado = ps.executeQuery();
+            while (resultado.next()) {
+                campeonato = new Campeonato();
+                campeonato.setId(resultado.getInt("id"));
+                campeonato.setNome(resultado.getString("nome"));
+                campeonato.setLocalidade(resultado.getString("localidade"));
+                campeonato.setDtcampeonato(new Date(resultado.getDate("dtcampeonato").getTime()));
+                campeonatos.add(campeonato);
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao listar campeonatos: " + e.getMessage());
+        }
+        return campeonatos;
+    }
+
     public void excluir(int id) {
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement("DELETE FROM campeonato WHERE id = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
-
         } catch (Exception e) {
             System.out.println("Erro ao deletar campeonato" + e.getMessage());
         }
-
     }
-
 }
