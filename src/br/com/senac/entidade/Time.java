@@ -12,17 +12,15 @@ package br.com.senac.entidade;
 public class Time {
     private Integer id;
     private String nome;
-    private Campeonato campeonato;
+    private Integer idmodalidade;   
 
-    public Campeonato getCampeonato() {
-        return campeonato;
+    public Integer getIdmodalidade() {
+        return idmodalidade;
     }
 
-    public void setCampeonato(Campeonato campeonato) {
-        this.campeonato = campeonato;
-    }
-    
-    
+    public void setIdmodalidade(Integer idmodalidade) {
+        this.idmodalidade = idmodalidade;
+    }  
     
 
     public Time(String nome) {
