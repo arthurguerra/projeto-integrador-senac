@@ -35,7 +35,7 @@ public class JogadorDaoImpl {
             ps.executeUpdate();
             resultado = ps.getGeneratedKeys();
             resultado.next();
-            jogador.setId(resultado.getInt("id"));
+            jogador.setId(resultado.getInt(1));
         } catch (Exception e) {
             throw new Exception("erro ao SALVAR jogador" + e.getMessage());
         }
@@ -121,7 +121,7 @@ public class JogadorDaoImpl {
 
     public void excluir(Integer id) {
 
-        sql = "DELETE FROM jogadores WHERE id = ?";
+        sql = "DELETE FROM jogador WHERE id = ?";
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);

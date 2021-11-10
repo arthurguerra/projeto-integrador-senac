@@ -63,7 +63,7 @@ public class JogadorDaoImplTest {
         });
     }
 
-//    @Test
+    @Test
     public void testListar() {
         System.out.println("listar");
         List<Jogador> jogadores = new ArrayList();
@@ -82,7 +82,7 @@ public class JogadorDaoImplTest {
     public void imprimeJogador(Jogador jogador){
         System.out.println("ID: "+jogador.getId());
         System.out.println("Nome: "+jogador.getNome());
-        System.out.println("Time: "+timeDaoImpl.pesquisarPorId(jogador.getIdtime()).getNome());
+        System.out.println("Time: "+jogador.getIdtime()+" - "+timeDaoImpl.pesquisarPorId(jogador.getIdtime()).getNome());
         System.out.println("");
     }
     

@@ -61,7 +61,7 @@ public class ModalidadeImpl {
             if(resultado.next()){
                 modalidade = new Modalidade();
                 modalidade.setId(id);
-                modalidade.setNome(modalidade.getNome());
+                modalidade.setNome(resultado.getString("nome"));
             }
         } catch (Exception e) {
             System.err.println("Erro ao PESQUISAR modalidade POR ID: "+e.getMessage());
