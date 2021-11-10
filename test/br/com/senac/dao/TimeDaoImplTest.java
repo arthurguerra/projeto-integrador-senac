@@ -56,12 +56,22 @@ public class TimeDaoImplTest {
         imprimeTime(time);
     }
     
-    @Test
+//    @Test
     public void testPesquisarPorNome() {
         System.out.println("Pesquisar por NOME");
         List<Time> times = new LinkedList<>();
         times = timeDaoImpl.pesquisarPorNome("Atlético");
         times.stream().forEach((time) -> {
+            imprimeTime(time);
+        });
+    }
+    
+    @Test
+    public void testListar(){
+        System.out.println("listar");
+        List<Time> times = new LinkedList<>();
+        times = timeDaoImpl.listar();
+        times.forEach((time) -> {
             imprimeTime(time);
         });
     }

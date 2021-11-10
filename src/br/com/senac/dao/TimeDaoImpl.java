@@ -24,7 +24,6 @@ public class TimeDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Time time;
-    
 
     public void salvar(Time time) {
         sql = "INSERT INTO time(nome, idmodalidade) VALUES (?, ?)";
@@ -39,7 +38,7 @@ public class TimeDaoImpl {
             System.out.println("Erro ao SALVAR time " + e.getMessage());
         }
     }
-    
+
     public void alterar(Time time) {
         sql = "UPDATE time SET nome=?, idmodalidade=? WHERE id=?";
         try {
@@ -50,10 +49,10 @@ public class TimeDaoImpl {
             ps.setInt(3, time.getId());
             ps.executeUpdate();
         } catch (Exception e) {
-            System.err.println("Erro ao ALTERAR time: "+e.getMessage());
+            System.err.println("Erro ao ALTERAR time: " + e.getMessage());
         }
     }
-    
+
     public Time pesquisarPorId(Integer id) {
         sql = "SELECT * FROM time WHERE id=?";
         try {
@@ -61,27 +60,27 @@ public class TimeDaoImpl {
             ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
             resultado = ps.executeQuery();
-            if(resultado.next()){
-               time = new Time();
-               time.setId(resultado.getInt("id"));
-               time.setNome(resultado.getString("nome"));
-               time.setIdmodalidade(resultado.getInt("idmodalidade"));               
+            if (resultado.next()) {
+                time = new Time();
+                time.setId(resultado.getInt("id"));
+                time.setNome(resultado.getString("nome"));
+                time.setIdmodalidade(resultado.getInt("idmodalidade"));
             }
         } catch (Exception e) {
-            System.err.println("Erro ao PESQUISAR time POR ID: "+e.getMessage());
+            System.err.println("Erro ao PESQUISAR time POR ID: " + e.getMessage());
         }
         return time;
     }
-    
+
     public List<Time> pesquisarPorNome(String nome) {
         sql = "SELECT * FROM time WHERE nome LIKE ?";
         List<Time> times = new LinkedList<>();
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
-            ps.setString(1, "%"+nome+"%");
+            ps.setString(1, "%" + nome + "%");
             resultado = ps.executeQuery();
-            while(resultado.next()){
+            while (resultado.next()) {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
@@ -89,19 +88,19 @@ public class TimeDaoImpl {
                 times.add(time);
             }
         } catch (Exception e) {
-            System.err.println("Erro ao PESQUISAR time POR NOME: "+e.getMessage());
+            System.err.println("Erro ao PESQUISAR time POR NOME: " + e.getMessage());
         }
         return times;
     }
-    
-        public List<Time> listar() {
+
+    public List<Time> listar() {
         sql = "SELECT * FROM time";
         List<Time> times = new ArrayList<>();
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             resultado = ps.executeQuery();
-            while(resultado.next()){
+            while (resultado.next()) {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
@@ -109,9 +108,22 @@ public class TimeDaoImpl {
                 times.add(time);
             }
         } catch (Exception e) {
-            System.err.println("Erro ao LISTAR times: "+e.getMessage());
+            System.err.println("Erro ao LISTAR times: " + e.getMessage());
         }
         return times;
-    }  
+    }
+    
+    public void excluir(Integer id){
+        sql = "DELETE FROM time WHERE id=?";
+        List<Time> times = new ArrayList<>();
+        try {
+            conexao = FabricaConexao.abreConexao();
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.err.println("Erro ao LISTAR time: "+e.getMessage());
+        }
+    }
 
 }
