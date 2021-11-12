@@ -32,6 +32,7 @@ public class telaTimes extends javax.swing.JFrame {
         nome = new javax.swing.JLabel();
         varNomeTime = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -46,6 +47,13 @@ public class telaTimes extends javax.swing.JFrame {
         nome.setText("Nome:");
 
         btSalvar.setText("Salvar");
+
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,7 +71,9 @@ public class telaTimes extends javax.swing.JFrame {
                         .addComponent(varNomeTime, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(btSalvar)))
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btLimpar)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -76,7 +86,9 @@ public class telaTimes extends javax.swing.JFrame {
                     .addComponent(nome)
                     .addComponent(varNomeTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addComponent(btSalvar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btLimpar))
                 .addGap(116, 116, 116))
         );
 
@@ -114,6 +126,10 @@ public class telaTimes extends javax.swing.JFrame {
         new telaPesquisaTime().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        limpar();
+    }//GEN-LAST:event_btLimparActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -150,6 +166,7 @@ public class telaTimes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JLabel cadastrar;
     private javax.swing.JMenu jMenu1;
@@ -160,4 +177,8 @@ public class telaTimes extends javax.swing.JFrame {
     private javax.swing.JLabel nome;
     private javax.swing.JTextField varNomeTime;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        varNomeTime.setText("");
+    }
 }

@@ -32,6 +32,7 @@ public class telaJogador extends javax.swing.JFrame {
         nome = new javax.swing.JLabel();
         varNomeJogador = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -42,6 +43,13 @@ public class telaJogador extends javax.swing.JFrame {
         nome.setText("Nome:");
 
         btSalvar.setText("Salvar");
+
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,7 +67,9 @@ public class telaJogador extends javax.swing.JFrame {
                         .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(165, 165, 165)
-                        .addComponent(btSalvar)))
+                        .addComponent(btSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btLimpar)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -72,7 +82,9 @@ public class telaJogador extends javax.swing.JFrame {
                     .addComponent(nome)
                     .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(btSalvar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSalvar)
+                    .addComponent(btLimpar))
                 .addGap(112, 112, 112))
         );
 
@@ -90,6 +102,10 @@ public class telaJogador extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        limpar();
+    }//GEN-LAST:event_btLimparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,10 +144,15 @@ public class telaJogador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
     private javax.swing.JLabel cadastrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nome;
     private javax.swing.JTextField varNomeJogador;
     // End of variables declaration//GEN-END:variables
+
+    private void limpar() {
+        varNomeJogador.setText("");
+    }
 }
