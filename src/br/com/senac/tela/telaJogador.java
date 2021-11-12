@@ -5,6 +5,10 @@
  */
 package br.com.senac.tela;
 
+import br.com.senac.dao.JogadorDaoImpl;
+import br.com.senac.entidade.Jogador;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Igor Fernandes
@@ -43,6 +47,11 @@ public class telaJogador extends javax.swing.JFrame {
         nome.setText("Nome:");
 
         btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +116,15 @@ public class telaJogador extends javax.swing.JFrame {
         limpar();
     }//GEN-LAST:event_btLimparActionPerformed
 
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if (!validarFormulario()) {
+            Jogador jogador = new Jogador();
+            jogador.setNome(varNomeJogador.getText().trim());
+            
+            JogadorDaoImpl jogadorDaoImpl = new JogadorDaoImpl();
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -154,5 +172,18 @@ public class telaJogador extends javax.swing.JFrame {
 
     private void limpar() {
         varNomeJogador.setText("");
+    }
+
+    private boolean validarFormulario() {
+        String nome = varNomeJogador.getText().trim();
+        if(validarCampoMenorQue3(nome)){
+            JOptionPane.showMessageDialog(null, "Digite um NOME válido");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validarCampoMenorQue3(String valor) {
+        return valor.length() < 3;
     }
 }
