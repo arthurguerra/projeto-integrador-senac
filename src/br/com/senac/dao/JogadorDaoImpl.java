@@ -24,7 +24,7 @@ public class JogadorDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Jogador jogador;
-    private TimeDaoImpl timeDaoImpl;
+    private TimeDaoImpl timeDaoImpl = new TimeDaoImpl();
 
     public void salvar(Jogador jogador) throws Exception {
 

@@ -28,7 +28,7 @@ public class JogadorDaoImplTest {
         timeDaoImpl = new TimeDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         jogador = new Jogador();
@@ -82,7 +82,7 @@ public class JogadorDaoImplTest {
     public void imprimeJogador(Jogador jogador){
         System.out.println("ID: "+jogador.getId());
         System.out.println("Nome: "+jogador.getNome());
-        System.out.println("Time: "+jogador.getTime()+" - "+timeDaoImpl.pesquisarPorId(jogador.getTime().getId()).getNome());
+        System.out.println("Time: "+jogador.getTime().getNome());
         System.out.println("");
     }
     
