@@ -46,7 +46,7 @@ public class telaCampeonato extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cadastrar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        cadastrar.setText("Cadastrar:");
+        cadastrar.setText("Cadastrar Campeonato:");
 
         nome.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         nome.setText("Nome:");
