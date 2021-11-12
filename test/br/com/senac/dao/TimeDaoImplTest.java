@@ -30,13 +30,14 @@ public class TimeDaoImplTest {
         modalidadeImpl = new ModalidadeImpl();
     }
 
-//    @Test 
+    @Test 
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         time = new Time();
-        time.setNome("Santos");
+        time.setNome("TIME TESTE");
         modalidade = modalidadeImpl.pesquisarPorId(1);
-        time.setIdmodalidade(modalidade.getId());
+        modalidade = modalidadeImpl.pesquisarPorId(1);
+        time.setModalidade(modalidade);
         timeDaoImpl.salvar(time);
     }
 

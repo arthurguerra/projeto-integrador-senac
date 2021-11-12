@@ -12,16 +12,15 @@ package br.com.senac.entidade;
 public class Time {
     private Integer id;
     private String nome;
-    private Integer idmodalidade;   
+    private Modalidade modalidade;   
 
-    public Integer getIdmodalidade() {
-        return idmodalidade;
+    public Modalidade getModalidade() {
+        return modalidade;
     }
 
-    public void setIdmodalidade(Integer idmodalidade) {
-        this.idmodalidade = idmodalidade;
-    }  
-    
+    public void setModalidade(Modalidade modalidade) {
+        this.modalidade = modalidade;
+    }
 
     public Time(String nome) {
         this.nome = nome;

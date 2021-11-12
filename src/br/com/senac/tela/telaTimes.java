@@ -33,6 +33,7 @@ public class telaTimes extends javax.swing.JFrame {
         varNomeTime = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
+        nome1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -55,6 +56,9 @@ public class telaTimes extends javax.swing.JFrame {
             }
         });
 
+        nome1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        nome1.setText("Campeonato:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -73,7 +77,10 @@ public class telaTimes extends javax.swing.JFrame {
                         .addGap(173, 173, 173)
                         .addComponent(btSalvar)
                         .addGap(18, 18, 18)
-                        .addComponent(btLimpar)))
+                        .addComponent(btLimpar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(nome1)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -81,11 +88,13 @@ public class telaTimes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cadastrar)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(nome1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
                     .addComponent(varNomeTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btLimpar))
@@ -175,6 +184,7 @@ public class telaTimes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nome;
+    private javax.swing.JLabel nome1;
     private javax.swing.JTextField varNomeTime;
     // End of variables declaration//GEN-END:variables
 

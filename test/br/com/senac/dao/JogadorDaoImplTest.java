@@ -28,12 +28,12 @@ public class JogadorDaoImplTest {
         timeDaoImpl = new TimeDaoImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         jogador = new Jogador();
         jogador.setNome("Pelé");
-        jogador.setIdtime(1);
+        jogador.setTime(time);
         jogadorDaoImpl.salvar(jogador);
     }
 
@@ -42,7 +42,7 @@ public class JogadorDaoImplTest {
         System.out.println("alterar");
         jogador = jogadorDaoImpl.pesquisarPorId(2);
         jogador.setNome("Robinho");
-        jogador.setIdtime(2);
+        jogador.setTime(time);
         jogadorDaoImpl.alterar(jogador);
     }
 
@@ -82,7 +82,7 @@ public class JogadorDaoImplTest {
     public void imprimeJogador(Jogador jogador){
         System.out.println("ID: "+jogador.getId());
         System.out.println("Nome: "+jogador.getNome());
-        System.out.println("Time: "+jogador.getIdtime()+" - "+timeDaoImpl.pesquisarPorId(jogador.getIdtime()).getNome());
+        System.out.println("Time: "+jogador.getTime()+" - "+timeDaoImpl.pesquisarPorId(jogador.getTime().getId()).getNome());
         System.out.println("");
     }
     

@@ -5,6 +5,7 @@
  */
 package br.com.senac.dao;
 
+import br.com.senac.entidade.Modalidade;
 import br.com.senac.entidade.Time;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,7 @@ public class TimeDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Time time;
+    private ModalidadeImpl modalidadeImpl;
 
     public void salvar(Time time) {
         sql = "INSERT INTO time(nome, idmodalidade) VALUES (?, ?)";
@@ -32,7 +34,7 @@ public class TimeDaoImpl {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setString(1, time.getNome());
-            ps.setInt(2, time.getIdmodalidade());
+            ps.setInt(2, time.getModalidade().getId());
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println("Erro ao SALVAR time " + e.getMessage());
@@ -45,7 +47,7 @@ public class TimeDaoImpl {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setString(1, time.getNome());
-            ps.setInt(2, time.getIdmodalidade());
+            ps.setInt(2, time.getModalidade().getId());
             ps.setInt(3, time.getId());
             ps.executeUpdate();
         } catch (Exception e) {
@@ -64,7 +66,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
-                time.setIdmodalidade(resultado.getInt("idmodalidade"));
+                time.setModalidade((Modalidade) resultado.getObject("modalidade"));
             }
         } catch (Exception e) {
             System.err.println("Erro ao PESQUISAR time POR ID: " + e.getMessage());
@@ -84,7 +86,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
-                time.setIdmodalidade(resultado.getInt("idmodalidade"));
+                time.setModalidade(modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade")));
                 times.add(time);
             }
         } catch (Exception e) {
@@ -104,7 +106,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
-                time.setIdmodalidade(resultado.getInt("idmodalidade"));
+                time.setModalidade(modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade")));
                 times.add(time);
             }
         } catch (Exception e) {

@@ -6,6 +6,7 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Jogador;
+import br.com.senac.entidade.Time;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +24,7 @@ public class JogadorDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Jogador jogador;
+    private TimeDaoImpl timeDaoImpl;
 
     public void salvar(Jogador jogador) throws Exception {
 
@@ -31,13 +33,13 @@ public class JogadorDaoImpl {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, jogador.getNome());
-            ps.setInt(2, jogador.getIdtime());
+            ps.setInt(2, jogador.getTime().getId());
             ps.executeUpdate();
             resultado = ps.getGeneratedKeys();
             resultado.next();
             jogador.setId(resultado.getInt(1));
         } catch (Exception e) {
-            throw new Exception("erro ao SALVAR jogador" + e.getMessage());
+            throw new Exception("erro ao SALVAR jogador: " + e.getMessage());
         }
     }
 
@@ -48,7 +50,7 @@ public class JogadorDaoImpl {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setString(1, jogador.getNome());
-            ps.setInt(2, jogador.getIdtime());
+            ps.setInt(2, jogador.getTime().getId());
             ps.setInt(3, jogador.getId());
             ps.executeUpdate();
         } catch (Exception e) {
@@ -68,7 +70,7 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
-                jogador.setIdtime(resultado.getInt("idtime"));
+                jogador.setTime(timeDaoImpl.pesquisarPorId(resultado.getInt("idtime")));
             }
         } catch (Exception e) {
             System.err.println("Erro ao pesquisar jogador por ID: " + e.getMessage());
@@ -89,7 +91,7 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
-                jogador.setIdtime(resultado.getInt("idtime"));
+                jogador.setTime((Time) resultado.getObject("time"));
                 jogadores.add(jogador);
             }
         } catch (Exception e) {
@@ -110,7 +112,7 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
-                jogador.setIdtime(resultado.getInt("idtime"));
+                jogador.setTime((Time) resultado.getObject("time"));
                 jogadores.add(jogador);
             }
         } catch (Exception e) {

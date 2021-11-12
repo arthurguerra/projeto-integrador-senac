@@ -13,7 +13,7 @@ public class Jogador {
 
     private Integer id;
     private String nome;
-    private int idtime;
+    private Time time;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -23,13 +23,13 @@ public class Jogador {
 
     }
 
-    public int getIdtime() {
-        return idtime;
+    public Time getTime() {
+        return time;
     }
 
-    public void setIdtime(int idtime) {
-        this.idtime = idtime;
-    }    
+    public void setTime(Time time) {
+        this.time = time;
+    }      
 
     public Integer getId() {
         return id;
