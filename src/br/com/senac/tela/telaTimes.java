@@ -37,7 +37,7 @@ public class telaTimes extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cadastrar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         cadastrar.setText("Cadastrar:");

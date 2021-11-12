@@ -37,7 +37,7 @@ public class telaCampeonato extends javax.swing.JFrame {
         varData = new javax.swing.JFormattedTextField();
         btSalvar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cadastrar.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         cadastrar.setText("Cadastrar:");
