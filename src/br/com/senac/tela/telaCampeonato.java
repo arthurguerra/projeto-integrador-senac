@@ -5,6 +5,11 @@
  */
 package br.com.senac.tela;
 
+import br.com.senac.dao.CampeonatoDaoImpl;
+import br.com.senac.entidade.Campeonato;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Igor Fernandes
@@ -30,7 +35,7 @@ public class telaCampeonato extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         cadastrar = new javax.swing.JLabel();
         nome = new javax.swing.JLabel();
-        varNomeJogador = new javax.swing.JTextField();
+        varNome = new javax.swing.JTextField();
         local = new javax.swing.JLabel();
         varLocal = new javax.swing.JTextField();
         datainicio = new javax.swing.JLabel();
@@ -55,6 +60,11 @@ public class telaCampeonato extends javax.swing.JFrame {
         varData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btLimpar.setText("Limpar");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +86,7 @@ public class telaCampeonato extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(nome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(local)
@@ -103,7 +113,7 @@ public class telaCampeonato extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
-                    .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(local)
@@ -137,6 +147,20 @@ public class telaCampeonato extends javax.swing.JFrame {
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         limpar();
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        if(!validarFormulario()){
+            Campeonato campeonato = new Campeonato();
+            campeonato.setNome(varNome.getText().trim());
+            campeonato.setLocalidade(varLocal.getText().trim());
+            campeonato.setDtcampeonato(new Date(varData.getText().trim()));
+            
+            CampeonatoDaoImpl campeonatoDaoImpl = new CampeonatoDaoImpl();
+            campeonatoDaoImpl.salvar(campeonato);
+            JOptionPane.showMessageDialog(null, "Campeonato salvo com sucesso!");
+            limpar();
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +199,7 @@ public class telaCampeonato extends javax.swing.JFrame {
     }
     
     private void limpar(){
-        varNomeJogador.setText("");
+        varNome.setText("");
         varLocal.setText("");
         varData.setText("");
     }
@@ -190,6 +214,36 @@ public class telaCampeonato extends javax.swing.JFrame {
     private javax.swing.JLabel nome;
     private javax.swing.JFormattedTextField varData;
     private javax.swing.JTextField varLocal;
-    private javax.swing.JTextField varNomeJogador;
+    private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validarFormulario() {
+        String nome = varNome.getText().trim();
+        if(validarCampoMenorQue3(nome)){
+            JOptionPane.showMessageDialog(null, "Digite um NOME válido!");
+            return true;
+        }
+        
+        String local = varLocal.getText().trim();
+        if(validarCampoMenorQue3(local)){
+            JOptionPane.showMessageDialog(null, "Digite um LOCAL válido!");
+            return true;
+        }
+        
+//        if(validarData()){
+//            JOptionPane.showMessageDialog(null, "Digite uma DATA válida");
+//            return true;
+//        }
+        return false;
+    }
+
+    private boolean validarCampoMenorQue3(String valor) {
+        return valor.length() < 3;
+    }
+
+//    private boolean validarData() {
+//        String data = varData.getText().trim();
+//        String terceiroCaracter = data.substring(2, 3);
+//        return !terceiroCaracter.equals("/");
+//    }
 }
