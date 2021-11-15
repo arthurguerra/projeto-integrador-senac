@@ -39,7 +39,7 @@ public class ModalidadeImpl {
     }
     
     public void alterar(Modalidade modalidade){
-        sql = "ALTER modalidade SET nome=? WHERE id=?";
+        sql = "UPDATE modalidade SET nome=? WHERE id=?";
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
