@@ -28,22 +28,22 @@ public class ModalidadeImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         modalidade = new Modalidade();
-        modalidade.setNome("Críquete");
+        modalidade.setNome("Tênis");
         modalidadeImpl.salvar(modalidade);
     }
 
 //    @Test
     public void testAlterar() {
         System.out.println("alterar");
-        modalidade = modalidadeImpl.pesquisarPorId(2);
-        modalidade.setNome("Tênis de Mesa");
+        modalidade = modalidadeImpl.pesquisarPorId(3);
+        modalidade.setNome("Basquete");
         modalidadeImpl.alterar(modalidade);
     }
 
 //    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        modalidade = modalidadeImpl.pesquisarPorId(2);
+        modalidade = modalidadeImpl.pesquisarPorId(1);
         imprimeModalidade(modalidade);
     }
 
@@ -70,7 +70,7 @@ public class ModalidadeImplTest {
 //    @Test
     public void testExcluir() {
         System.out.println("excluir");
-        modalidadeImpl.excluir(4);
+        modalidadeImpl.excluir(3);
     }
     
     public void imprimeModalidade(Modalidade modalidade){
