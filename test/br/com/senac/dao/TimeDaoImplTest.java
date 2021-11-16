@@ -36,7 +36,6 @@ public class TimeDaoImplTest {
         time = new Time();
         time.setNome("TIME TESTE");
         modalidade = modalidadeImpl.pesquisarPorId(1);
-        modalidade = modalidadeImpl.pesquisarPorId(1);
         time.setModalidade(modalidade);
         timeDaoImpl.salvar(time);
     }
@@ -46,14 +45,14 @@ public class TimeDaoImplTest {
         System.out.println("alterar");
         time = timeDaoImpl.pesquisarPorId(4);
         time.setNome("Vasco");
-        time.setModalidade(modalidadeImpl.pesquisarPorId(1));
+        time.setModalidade(modalidadeImpl.pesquisarPorId(2));
         timeDaoImpl.alterar(time);
     }
     
 //    @Test
     public void testPesquisarPorId(){
         System.out.println("Pesquisar por ID");
-        time = timeDaoImpl.pesquisarPorId(2);
+        time = timeDaoImpl.pesquisarPorId(4);
         imprimeTime(time);
     }
     
@@ -61,7 +60,7 @@ public class TimeDaoImplTest {
     public void testPesquisarPorNome() {
         System.out.println("Pesquisar por NOME");
         List<Time> times = new LinkedList<>();
-        times = timeDaoImpl.pesquisarPorNome("Atlético");
+        times = timeDaoImpl.pesquisarPorNome("a");
         times.stream().forEach((time) -> {
             imprimeTime(time);
         });
@@ -80,7 +79,7 @@ public class TimeDaoImplTest {
 //    @Test
     public void testExcluir(){
         System.out.println("excluir");
-        timeDaoImpl.excluir(8);
+        timeDaoImpl.excluir(5);
     }
     
     private void imprimeTime(Time time){
