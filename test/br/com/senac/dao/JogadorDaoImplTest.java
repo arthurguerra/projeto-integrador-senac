@@ -32,7 +32,8 @@ public class JogadorDaoImplTest {
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         jogador = new Jogador();
-        jogador.setNome("Pelé");
+        jogador.setNome("Robinho");
+        time = timeDaoImpl.pesquisarPorId(1);
         jogador.setTime(time);
         jogadorDaoImpl.salvar(jogador);
     }
@@ -40,8 +41,9 @@ public class JogadorDaoImplTest {
 //    @Test
     public void testAlterar() {
         System.out.println("alterar");
-        jogador = jogadorDaoImpl.pesquisarPorId(2);
-        jogador.setNome("Robinho");
+        jogador = jogadorDaoImpl.pesquisarPorId(1);
+        jogador.setNome("Romário");
+        time = timeDaoImpl.pesquisarPorId(4);
         jogador.setTime(time);
         jogadorDaoImpl.alterar(jogador);
     }
@@ -49,7 +51,7 @@ public class JogadorDaoImplTest {
 //    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        jogador = jogadorDaoImpl.pesquisarPorId(3);
+        jogador = jogadorDaoImpl.pesquisarPorId(2);
         imprimeJogador(jogador);
     }
 
@@ -57,7 +59,7 @@ public class JogadorDaoImplTest {
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
         List<Jogador> jogadores = new ArrayList();
-        jogadores = jogadorDaoImpl.pesquisarPorNome("elé");
+        jogadores = jogadorDaoImpl.pesquisarPorNome("Ronald");
         jogadores.forEach((jogador)->{
             imprimeJogador(jogador);
         });
@@ -76,14 +78,13 @@ public class JogadorDaoImplTest {
 //    @Test
     public void testExcluir() {
         System.out.println("excluir");
-        jogadorDaoImpl.excluir(4);
+        jogadorDaoImpl.excluir(5);
     }
     
     public void imprimeJogador(Jogador jogador){
-        System.out.println("ID: "+jogador.getId());
+        System.out.println("");
+        System.out.println("ID do Jogador: "+jogador.getId());
         System.out.println("Nome: "+jogador.getNome());
         System.out.println("Time: "+jogador.getTime().getNome());
-        System.out.println("");
-    }
-    
+    }    
 }
