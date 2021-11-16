@@ -25,17 +25,20 @@ public class TimeDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Time time;
-    private ModalidadeImpl modalidadeImpl = new ModalidadeImpl();
+    private ModalidadeImpl modalidadeImpl;
 
     public void salvar(Time time) {
         sql = "INSERT INTO time(nome, idmodalidade) VALUES (?, ?)";
 
         try {
             conexao = FabricaConexao.abreConexao();
-            ps = conexao.prepareStatement(sql);
+            ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, time.getNome());
             ps.setInt(2, time.getModalidade().getId());
             ps.executeUpdate();
+            resultado = ps.getGeneratedKeys();
+            resultado.next();
+            time.setId(resultado.getInt(1));
         } catch (Exception e) {
             System.out.println("Erro ao SALVAR time " + e.getMessage());
         }
@@ -66,6 +69,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
+                modalidadeImpl = new ModalidadeImpl();
                 time.setModalidade(modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade")));
             }
         } catch (Exception e) {
@@ -86,6 +90,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
+                modalidadeImpl = new ModalidadeImpl();
                 time.setModalidade(modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade")));
                 times.add(time);
             }
@@ -106,6 +111,7 @@ public class TimeDaoImpl {
                 time = new Time();
                 time.setId(resultado.getInt("id"));
                 time.setNome(resultado.getString("nome"));
+                modalidadeImpl = new ModalidadeImpl();
                 time.setModalidade(modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade")));
                 times.add(time);
             }
