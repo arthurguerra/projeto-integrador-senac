@@ -26,31 +26,33 @@ public class CampeonatoDaoImpl {
     private Campeonato campeonato;
 
     public void salvar(Campeonato campeonato) {
-        sql = "INSERT INTO campeonato(nome, localidade, dtcampeonato) VALUES (?, ?, ?)";
+        sql = "INSERT INTO campeonato(nome, localidade, inicio, fim) VALUES (?, ?, ?, ?)";
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, campeonato.getNome());
             ps.setString(2, campeonato.getLocalidade());
-            ps.setDate(3, new Date(campeonato.getDtcampeonato().getTime()));
+            ps.setDate(3, new Date(campeonato.getInicio().getTime()));
+            ps.setDate(4, new Date(campeonato.getFim().getTime()));
             ps.executeUpdate();
             resultado = ps.getGeneratedKeys();
             resultado.next();
             campeonato.setId(resultado.getInt(1));
         } catch (Exception e) {
-            System.out.println("erro ao SALVAR " + e.getMessage());
+            System.out.println("Erro ao SALVAR campeonato: " + e.getMessage());
         }
     }
 
     public void alterar(Campeonato campeonato) {
-        sql = "UPDATE campeonato SET nome=?, localidade=?, dtcampeonato=? WHERE id=?";
+        sql = "UPDATE campeonato SET nome=?, localidade=?, inicio=?, fim=? WHERE id=?";
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
             ps.setString(1, campeonato.getNome());
             ps.setString(2, campeonato.getLocalidade());
-            ps.setDate(3, new Date(campeonato.getDtcampeonato().getTime()));
-            ps.setInt(4, campeonato.getId());
+            ps.setDate(3, new Date(campeonato.getInicio().getTime()));
+            ps.setDate(4, new Date(campeonato.getFim().getTime()));
+            ps.setInt(5, campeonato.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             System.err.println("Erro ao ALTERAR campeonato: " + e.getMessage());
@@ -69,7 +71,8 @@ public class CampeonatoDaoImpl {
                 campeonato.setId(resultado.getInt("id"));
                 campeonato.setNome(resultado.getString("nome"));
                 campeonato.setLocalidade(resultado.getString("localidade"));
-                campeonato.setDtcampeonato(resultado.getDate("dtcampeonato"));
+                campeonato.setInicio(resultado.getDate("inicio"));
+                campeonato.setFim(resultado.getDate("fim"));
             }
         } catch (Exception e) {
             System.err.println("Erro ao PESQUISAR campeonato POR ID: " + e.getMessage());
@@ -90,7 +93,8 @@ public class CampeonatoDaoImpl {
                 campeonato.setId(resultado.getInt("id"));
                 campeonato.setNome(resultado.getString("nome"));
                 campeonato.setLocalidade(resultado.getString("localidade"));
-                campeonato.setDtcampeonato(new Date(resultado.getDate("dtcampeonato").getTime()));
+                campeonato.setInicio(new Date(resultado.getDate("inicio").getTime()));
+                campeonato.setFim(new Date(resultado.getDate("fim").getTime()));
                 campeonatos.add(campeonato);
             }
         } catch (Exception e) {
@@ -111,7 +115,8 @@ public class CampeonatoDaoImpl {
                 campeonato.setId(resultado.getInt("id"));
                 campeonato.setNome(resultado.getString("nome"));
                 campeonato.setLocalidade(resultado.getString("localidade"));
-                campeonato.setDtcampeonato(new Date(resultado.getDate("dtcampeonato").getTime()));
+                campeonato.setInicio(new Date(resultado.getDate("inicio").getTime()));
+                campeonato.setFim(new Date(resultado.getDate("fim").getTime()));
                 campeonatos.add(campeonato);
             }
         } catch (Exception e) {
