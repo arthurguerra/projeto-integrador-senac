@@ -24,7 +24,7 @@ public class JogadorDaoImpl {
     private ResultSet resultado;
     private String sql;
     private Jogador jogador;
-    private TimeDaoImpl timeDaoImpl = new TimeDaoImpl();
+    private TimeDaoImpl timeDaoImpl;
 
     public void salvar(Jogador jogador) throws Exception {
 
@@ -70,6 +70,7 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
+                timeDaoImpl = new TimeDaoImpl();
                 jogador.setTime(timeDaoImpl.pesquisarPorId(resultado.getInt("idtime")));
             }
         } catch (Exception e) {
@@ -91,7 +92,8 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
-                jogador.setTime((Time) resultado.getObject("time"));
+                timeDaoImpl = new TimeDaoImpl();
+                jogador.setTime(timeDaoImpl.pesquisarPorId(resultado.getInt("idtime")));
                 jogadores.add(jogador);
             }
         } catch (Exception e) {
@@ -112,7 +114,8 @@ public class JogadorDaoImpl {
                 jogador = new Jogador();
                 jogador.setId(resultado.getInt("id"));
                 jogador.setNome(resultado.getString("nome"));
-                jogador.setTime((Time) resultado.getObject("time"));
+                timeDaoImpl = new TimeDaoImpl();
+                jogador.setTime(timeDaoImpl.pesquisarPorId(resultado.getInt("idtime")));
                 jogadores.add(jogador);
             }
         } catch (Exception e) {
