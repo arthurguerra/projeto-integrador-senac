@@ -28,57 +28,64 @@ public class CampeonatoDaoImplTest {
 //    @Test
     public void testSalvar() throws Exception {
         System.out.println("SALVAR");
-        campeonato = new Campeonato("Campeonato Brasileiro de Futebol Série B", "Brasil", new Date());
+        campeonato = new Campeonato("Campeonato América", "América", new Date(), new Date());
         campeonatoDaoImpl.salvar(campeonato);
     }
 
-    //    @Test
+//    @Test
     public void testAlterar() {
-        campeonato = campeonatoDaoImpl.pesquisarPorId(3);
+        System.out.println("alterar");
+        campeonato = campeonatoDaoImpl.pesquisarPorId(6);
         campeonato.setNome("Olimpiadas 2024");
         campeonato.setLocalidade("Rússia");
-        campeonato.setDtcampeonato(new Date());
+        campeonato.setInicio(new Date());
+        campeonato.setInicio(new Date(2020, 06, 28));
+        campeonato.setFim(new Date());
         //ver como coloca uma data especifica
         campeonatoDaoImpl.alterar(campeonato);
     }
-    
+
 //    @Test
     public void testPesquisarPorId() {
+        System.out.println("pesquisar por ID");
         campeonato = campeonatoDaoImpl.pesquisarPorId(4);
         assertNotNull(campeonato);
         imprimeCampeonato(campeonato);
 
     }
-    
+
 //    @Test
-    public void testListar(){
+    public void testListar() {
+        System.out.println("listar");
         List<Campeonato> campeonatos = new ArrayList();
         campeonatos = campeonatoDaoImpl.listar();
-        campeonatos.forEach((camp)->{
+        campeonatos.forEach((camp) -> {
             imprimeCampeonato(camp);
         });
     }
-    
+
 //    @Test
-    public void testPesquisarPorNome(){
+    public void testPesquisarPorNome() {
         System.out.println("pesquisar por nome");
         List<Campeonato> campeonatos = new ArrayList();
         campeonatos = campeonatoDaoImpl.pesquisarPorNome("Brasil");
-        campeonatos.forEach((camp)->{
+        campeonatos.forEach((camp) -> {
             imprimeCampeonato(camp);
         });
     }
-    
+
 //    @Test
     public void testExcluir() {
-        campeonatoDaoImpl.excluir(5);
+        System.out.println("excluir");
+        campeonatoDaoImpl.excluir(6);
     }
 
     private void imprimeCampeonato(Campeonato camp) {
         System.out.println("ID: " + camp.getId());
         System.out.println("Nome: " + camp.getNome());
         System.out.println("Localidade: " + camp.getLocalidade());
-        System.out.println("Data: " + camp.getDtcampeonato());
+        System.out.println("Início: " + camp.getInicio());
+        System.out.println("Fim: " + camp.getFim());
         System.out.println("------------------------------------");
     }
 
