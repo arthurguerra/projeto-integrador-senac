@@ -42,6 +42,11 @@ public class telaCampeonato extends javax.swing.JFrame {
         varData = new javax.swing.JFormattedTextField();
         btSalvar = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,9 +85,6 @@ public class telaCampeonato extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(cadastrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(nome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,7 +104,10 @@ public class telaCampeonato extends javax.swing.JFrame {
                                 .addComponent(btSalvar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btLimpar))
-                            .addComponent(varData, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(varData, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(cadastrar)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,12 +127,38 @@ public class telaCampeonato extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(datainicio)
                     .addComponent(varData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSalvar)
                     .addComponent(btLimpar))
                 .addGap(57, 57, 57))
         );
+
+        jMenu1.setText("Vizualizar");
+
+        jMenuItem1.setText("Campeonatos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Alterar");
+
+        jMenuItem2.setText("Campeonatos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,11 +180,11 @@ public class telaCampeonato extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if(!validarFormulario()){
+        if (!validarFormulario()) {
             Campeonato campeonato = new Campeonato();
             campeonato.setNome(varNome.getText().trim());
             campeonato.setLocalidade(varLocal.getText().trim());
-            campeonato.setDtcampeonato(new Date(varData.getText().trim()));
+            //  campeonato.setDtcampeonato(new Date(varData.getText().trim()));
             
             CampeonatoDaoImpl campeonatoDaoImpl = new CampeonatoDaoImpl();
             campeonatoDaoImpl.salvar(campeonato);
@@ -161,6 +192,14 @@ public class telaCampeonato extends javax.swing.JFrame {
             limpar();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new telaPesquisaCampeonato().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new telaAlteraCampeonato().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +237,7 @@ public class telaCampeonato extends javax.swing.JFrame {
         });
     }
     
-    private void limpar(){
+    private void limpar() {
         varNome.setText("");
         varLocal.setText("");
         varData.setText("");
@@ -209,6 +248,11 @@ public class telaCampeonato extends javax.swing.JFrame {
     private javax.swing.JButton btSalvar;
     private javax.swing.JLabel cadastrar;
     private javax.swing.JLabel datainicio;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel local;
     private javax.swing.JLabel nome;
@@ -219,24 +263,24 @@ public class telaCampeonato extends javax.swing.JFrame {
 
     private boolean validarFormulario() {
         String nome = varNome.getText().trim();
-        if(validarCampoMenorQue3(nome)){
+        if (validarCampoMenorQue3(nome)) {
             JOptionPane.showMessageDialog(null, "Digite um NOME válido!");
             return true;
         }
         
         String local = varLocal.getText().trim();
-        if(validarCampoMenorQue3(local)){
+        if (validarCampoMenorQue3(local)) {
             JOptionPane.showMessageDialog(null, "Digite um LOCAL válido!");
             return true;
         }
-        
+
 //        if(validarData()){
 //            JOptionPane.showMessageDialog(null, "Digite uma DATA válida");
 //            return true;
 //        }
         return false;
     }
-
+    
     private boolean validarCampoMenorQue3(String valor) {
         return valor.length() < 3;
     }

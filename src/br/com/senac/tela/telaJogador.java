@@ -22,12 +22,12 @@ public class telaJogador extends javax.swing.JFrame {
      * Creates new form telaTimes
      */
     private List<Time> times;
-
+    
     public telaJogador() {
         initComponents();
         carregarTimes();
     }
-
+    
     private void carregarTimes() {
         Time time;
         times = new ArrayList<>();
@@ -60,6 +60,11 @@ public class telaJogador extends javax.swing.JFrame {
         btLimpar = new javax.swing.JButton();
         nome1 = new javax.swing.JLabel();
         comboTime = new javax.swing.JComboBox();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,9 +98,6 @@ public class telaJogador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(cadastrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(nome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -109,7 +111,10 @@ public class telaJogador extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(nome1)
                         .addGap(18, 18, 18)
-                        .addComponent(comboTime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboTime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(cadastrar)))
                 .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,7 +126,7 @@ public class telaJogador extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome1)
                     .addComponent(comboTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
                     .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,6 +136,32 @@ public class telaJogador extends javax.swing.JFrame {
                     .addComponent(btLimpar))
                 .addGap(112, 112, 112))
         );
+
+        jMenu1.setText("Vizualizar");
+
+        jMenuItem1.setText("Jogadores Cadastrados");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Alterar");
+
+        jMenuItem2.setText("Jogadores");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,12 +183,10 @@ public class telaJogador extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-
+        
         int i = comboTime.getSelectedIndex();
         System.out.println(i);
         
-        
-
         if (!validarFormulario()) {
             Jogador jogador = new Jogador();
             jogador.setNome(varNomeJogador.getText().trim());
@@ -166,6 +195,14 @@ public class telaJogador extends javax.swing.JFrame {
             JogadorDaoImpl jogadorDaoImpl = new JogadorDaoImpl();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new telaPesquisaJogador().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       new telaAlteraJogador().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,6 +245,11 @@ public class telaJogador extends javax.swing.JFrame {
     private javax.swing.JButton btSalvar;
     private javax.swing.JLabel cadastrar;
     private javax.swing.JComboBox comboTime;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nome;
     private javax.swing.JLabel nome1;
@@ -217,7 +259,7 @@ public class telaJogador extends javax.swing.JFrame {
     private void limpar() {
         varNomeJogador.setText("");
     }
-
+    
     private boolean validarFormulario() {
         String nome = varNomeJogador.getText().trim();
         if (validarCampoMenorQue3(nome)) {
@@ -226,7 +268,7 @@ public class telaJogador extends javax.swing.JFrame {
         }
         return false;
     }
-
+    
     private boolean validarCampoMenorQue3(String valor) {
         return valor.length() < 3;
     }
