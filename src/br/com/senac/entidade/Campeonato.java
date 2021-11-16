@@ -16,14 +16,23 @@ public class Campeonato {
     private int id;
     private String nome;
     private String localidade;
-    private Date dtcampeonato;
+    private Date inicio;
+    private Date fim;
 
-    public Date getDtcampeonato() {
-        return dtcampeonato;
+    public Date getFim() {
+        return fim;
     }
 
-    public void setDtcampeonato(Date dtcampeonato) {
-        this.dtcampeonato = dtcampeonato;
+    public void setFim(Date fim) {
+        this.fim = fim;
+    }
+    
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
     }
 
     public int getId() {
@@ -50,10 +59,11 @@ public class Campeonato {
         this.localidade = localidade;
     }
 
-    public Campeonato(String nome, String localidade, Date dtcampeonato) {
+    public Campeonato(String nome, String localidade, Date inicio, Date fim) {
         this.nome = nome;
         this.localidade = localidade;
-        this.dtcampeonato = dtcampeonato;
+        this.inicio = inicio;
+        this.fim = fim;
     }
 
     public Campeonato() {
