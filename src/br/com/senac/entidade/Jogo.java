@@ -12,11 +12,11 @@ package br.com.senac.entidade;
 public class Jogo {
     
     private Integer id;
-    private Integer idmodalidade;
-    private Integer idcampeonato;
-    private Integer idtime1;
-    private Integer idtime2;    
-    
+    private Modalidade modalidade;
+    private Campeonato campeonato;
+    private Time time1;
+    private Time time2;
+
     public Integer getId() {
         return id;
     }
@@ -24,36 +24,37 @@ public class Jogo {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Integer getIdmodalidade() {
-        return idmodalidade;
+    
+    public Modalidade getModalidade() {
+        return modalidade;
     }
 
-    public void setIdmodalidade(Integer idmodalidade) {
-        this.idmodalidade = idmodalidade;
+    public void setModalidade(Modalidade modalidade) {
+        this.modalidade = modalidade;
     }
 
-    public Integer getIdcampeonato() {
-        return idcampeonato;
+    public Campeonato getCampeonato() {
+        return campeonato;
     }
 
-    public void setIdcampeonato(Integer idcampeonato) {
-        this.idcampeonato = idcampeonato;
+    public void setCampeonato(Campeonato campeonato) {
+        this.campeonato = campeonato;
     }
 
-    public Integer getIdtime1() {
-        return idtime1;
+    public Time getTime1() {
+        return time1;
     }
 
-    public void setIdtime1(Integer idtime1) {
-        this.idtime1 = idtime1;
+    public void setTime1(Time time1) {
+        this.time1 = time1;
     }
 
-    public Integer getIdtime2() {
-        return idtime2;
+    public Time getTime2() {
+        return time2;
     }
 
-    public void setIdtime2(Integer idtime2) {
-        this.idtime2 = idtime2;
-    }    
+    public void setTime2(Time time2) {
+        this.time2 = time2;
+    }
+    
 }
