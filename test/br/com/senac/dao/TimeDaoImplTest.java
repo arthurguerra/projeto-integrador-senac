@@ -56,7 +56,7 @@ public class TimeDaoImplTest {
         imprimeTime(time);
     }
     
-//    @Test
+   @Test
     public void testPesquisarPorNome() {
         System.out.println("Pesquisar por NOME");
         List<Time> times = new LinkedList<>();

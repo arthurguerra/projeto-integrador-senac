@@ -260,14 +260,18 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) jTCampeonatos.getModel();
         modelo.setNumRows(0);
-        TimeDaoImpl x = new TimeDaoImpl();
+        CampeonatoDaoImpl x = new CampeonatoDaoImpl();
 
-        for (Time p : x.pesquisarPorNome(desc)) {
+        for (Campeonato p : x.pesquisarPorNome(desc)) {
             modelo.addRow(new Object[]{
               
                 p.getNome(),
-                p.getId(),
-                p.getModalidade()
+                p.getLocalidade(),
+                p.getInicio(),
+                p.getFim(),
+                p.getId()
+                
+                
             });
 
         }

@@ -61,7 +61,7 @@ public class telaPesquisaTime2 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "ID", "ID Modalidade"
+                "Nome", "ID", "Modalidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -139,10 +139,15 @@ public class telaPesquisaTime2 extends javax.swing.JFrame {
               
                 p.getNome(),
                 p.getId(),
-                p.getModalidade()
+                p.getModalidade().getNome(),
+                
+                
             });
 
         }
+        
+        
+        
 
     }
 

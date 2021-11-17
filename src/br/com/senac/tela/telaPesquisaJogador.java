@@ -63,7 +63,7 @@ public class telaPesquisaJogador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "ID", "ID time"
+                "Nome", "ID", "Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -140,7 +140,7 @@ public class telaPesquisaJogador extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 p.getNome(),
                 p.getId(),
-                p.getTime()
+                p.getTime().getNome()
 
             });
 

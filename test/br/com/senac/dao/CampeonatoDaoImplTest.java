@@ -64,11 +64,11 @@ public class CampeonatoDaoImplTest {
         });
     }
 
-//    @Test
+  @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisar por nome");
         List<Campeonato> campeonatos = new ArrayList();
-        campeonatos = campeonatoDaoImpl.pesquisarPorNome("Brasil");
+        campeonatos = campeonatoDaoImpl.pesquisarPorNome("a");
         campeonatos.forEach((camp) -> {
             imprimeCampeonato(camp);
         });

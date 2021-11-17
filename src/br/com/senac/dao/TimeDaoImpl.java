@@ -120,8 +120,8 @@ public class TimeDaoImpl {
         }
         return times;
     }
-    
-    public void excluir(Integer id){
+
+    public void excluir(Integer id) {
         sql = "DELETE FROM time WHERE id=?";
         List<Time> times = new ArrayList<>();
         try {
@@ -130,7 +130,7 @@ public class TimeDaoImpl {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
-            System.err.println("Erro ao LISTAR time: "+e.getMessage());
+            System.err.println("Erro ao LISTAR time: " + e.getMessage());
         }
     }
 
