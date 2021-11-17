@@ -5,7 +5,11 @@
  */
 package br.com.senac.dao;
 
+import br.com.senac.entidade.Campeonato;
 import br.com.senac.entidade.Jogo;
+import br.com.senac.entidade.Modalidade;
+import br.com.senac.entidade.Time;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,66 +20,79 @@ import static org.junit.Assert.*;
  */
 public class JogoDaoImplTest {
     
+    private Jogo jogo;
+    private JogoDaoImpl jogoDaoImpl;
+    private Modalidade modalidade;
+    private ModalidadeImpl modalidadeImpl;
+    private Campeonato campeonato;
+    private CampeonatoDaoImpl campeonatoDaoImpl;
+    private Time time;
+    private TimeDaoImpl timeDaoImpl;
+    
     public JogoDaoImplTest() {
+        jogoDaoImpl = new JogoDaoImpl();
+        modalidadeImpl = new ModalidadeImpl();
+        campeonatoDaoImpl = new CampeonatoDaoImpl();
+        timeDaoImpl = new TimeDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() {
         System.out.println("salvar");
-        Jogo jogo = null;
-        JogoDaoImpl instance = new JogoDaoImpl();
-        instance.salvar(jogo);
-        fail("The test case is a prototype.");
+        jogo = new Jogo();
+        modalidade = modalidadeImpl.pesquisarPorId(3);
+        jogo.setModalidade(modalidade);
+        campeonato = campeonatoDaoImpl.pesquisarPorId(6);
+        jogo.setCampeonato(campeonato);
+        time = timeDaoImpl.pesquisarPorId(1);
+        jogo.setTime1(time);
+        time = timeDaoImpl.pesquisarPorId(2);
+        jogo.setTime2(time);
+        jogoDaoImpl.salvar(jogo);
     }
 
-    @Test
+//    @Test
     public void testAlterar() {
         System.out.println("alterar");
-        Jogo jogo = null;
-        JogoDaoImpl instance = new JogoDaoImpl();
-        instance.alterar(jogo);
-        fail("The test case is a prototype.");
+        jogo = jogoDaoImpl.pesquisarPorId(1);
+        campeonato = campeonatoDaoImpl.pesquisarPorId(4);
+        jogo.setCampeonato(campeonato);
+        time = timeDaoImpl.pesquisarPorId(3);
+        jogo.setTime1(time);
+        time = timeDaoImpl.pesquisarPorId(4);
+        jogo.setTime2(time);
+        jogoDaoImpl.alterar(jogo);
     }
 
-    @Test
+//    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        Integer id = null;
-        JogoDaoImpl instance = new JogoDaoImpl();
-        Jogo expResult = null;
-        Jogo result = instance.pesquisarPorId(id);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        jogo = jogoDaoImpl.pesquisarPorId(1);
+        imprimeJogo(jogo);
     }
 
-    @Test
-    public void testPesquisarPorNome() {
-        System.out.println("pesquisarPorNome");
-        String nome = "";
-        JogoDaoImpl instance = new JogoDaoImpl();
-        List<Jogo> expResult = null;
-        List<Jogo> result = instance.pesquisarPorNome(nome);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    @Test
+//    @Test
     public void testListar() {
         System.out.println("listar");
-        JogoDaoImpl instance = new JogoDaoImpl();
-        List<Jogo> expResult = null;
-        List<Jogo> result = instance.listar();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        List<Jogo> jogos = new ArrayList<>();
+        jogos = jogoDaoImpl.listar();
+        jogos.stream().forEach((j) -> {
+            imprimeJogo(j);
+        });
     }
 
-    @Test
+//    @Test
     public void testExcluir() {
         System.out.println("excluir");
-        Integer id = null;
-        JogoDaoImpl instance = new JogoDaoImpl();
-        instance.excluir(id);
-        fail("The test case is a prototype.");
+        jogoDaoImpl.excluir(2);
     }
     
+    public void imprimeJogo(Jogo jogo){
+        System.out.println("");
+        System.out.println("ID do jogo: "+jogo.getId());
+        System.out.println("Modalidade: "+jogo.getModalidade().getNome());
+        System.out.println("Campeonato: "+jogo.getCampeonato().getNome());
+        System.out.println("Time 1: "+jogo.getTime1().getNome());
+        System.out.println("Time 2: "+jogo.getTime2().getNome());
+    }
 }
