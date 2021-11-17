@@ -40,7 +40,7 @@ public class JogoDaoImpl {
     }
 
     public void salvar(Jogo jogo) {
-        sql = "INSER INTO jogo (idmodalidade, idcampeonato, idtime1, idtime2) VALUES (?,?,?,?)";
+        sql = "INSERT INTO jogo (idmodalidade, idcampeonato, idtime1, idtime2) VALUES (?,?,?,?)";
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
