@@ -44,10 +44,10 @@ public class JogoDaoImpl {
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, jogo.getIdmodalidade());
-            ps.setInt(2, jogo.getIdcampeonato());
-            ps.setInt(3, jogo.getIdtime1());
-            ps.setInt(4, jogo.getIdtime2());
+            ps.setInt(1, jogo.getModalidade().getId());
+            ps.setInt(2, jogo.getCampeonato().getId());
+            ps.setInt(3, jogo.getTime1().getId());
+            ps.setInt(4, jogo.getTime2().getId());
             ps.executeUpdate();
             resultado = ps.getGeneratedKeys();
             resultado.next();
@@ -62,10 +62,10 @@ public class JogoDaoImpl {
         try {
             conexao = FabricaConexao.abreConexao();
             ps = conexao.prepareStatement(sql);
-            ps.setInt(1, jogo.getIdmodalidade());
-            ps.setInt(2, jogo.getIdcampeonato());
-            ps.setInt(3, jogo.getIdtime1());
-            ps.setInt(4, jogo.getIdtime2());
+            ps.setInt(1, jogo.getModalidade().getId());
+            ps.setInt(2, jogo.getCampeonato().getId());
+            ps.setInt(3, jogo.getTime1().getId());
+            ps.setInt(4, jogo.getTime2().getId());
             ps.setInt(5, jogo.getId());
             ps.executeUpdate();
         } catch (Exception e) {
@@ -84,13 +84,13 @@ public class JogoDaoImpl {
                 jogo = new Jogo();
                 jogo.setId(resultado.getInt("id"));
                 modalidade = modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade"));
-                jogo.setIdmodalidade(modalidade.getId());
+                jogo.setModalidade(modalidade);
                 campeonato = campeonatoDaoImpl.pesquisarPorId(resultado.getInt("idcampeonato"));
-                jogo.setIdcampeonato(campeonato.getId());
+                jogo.setCampeonato(campeonato);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime1"));
-                jogo.setIdtime1(time.getId());
+                jogo.setTime1(time);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime2"));
-                jogo.setIdtime2(time.getId());
+                jogo.setTime2(time);
             }
         } catch (Exception e) {
             System.err.println("Erro ao pesquisar jogo por ID: " + e.getMessage());
@@ -110,13 +110,13 @@ public class JogoDaoImpl {
                 jogo = new Jogo();
                 jogo.setId(resultado.getInt("id"));
                 modalidade = modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade"));
-                jogo.setIdmodalidade(modalidade.getId());
+                jogo.setModalidade(modalidade);
                 campeonato = campeonatoDaoImpl.pesquisarPorId(resultado.getInt("idcampeonato"));
-                jogo.setIdcampeonato(campeonato.getId());
+                jogo.setCampeonato(campeonato);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime1"));
-                jogo.setIdtime1(time.getId());
+                jogo.setTime1(time);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime2"));
-                jogo.setIdtime2(time.getId());
+                jogo.setTime2(time);
                 jogos.add(jogo);
             }
         } catch (Exception e) {
@@ -136,13 +136,13 @@ public class JogoDaoImpl {
                 jogo = new Jogo();
                 jogo.setId(resultado.getInt("id"));
                 modalidade = modalidadeImpl.pesquisarPorId(resultado.getInt("idmodalidade"));
-                jogo.setIdmodalidade(modalidade.getId());
+                jogo.setModalidade(modalidade);
                 campeonato = campeonatoDaoImpl.pesquisarPorId(resultado.getInt("idcampeonato"));
-                jogo.setIdcampeonato(campeonato.getId());
+                jogo.setCampeonato(campeonato);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime1"));
-                jogo.setIdtime1(time.getId());
+                jogo.setTime1(time);
                 time = timeDaoImpl.pesquisarPorId(resultado.getInt("idtime2"));
-                jogo.setIdtime2(time.getId());
+                jogo.setTime2(time);
                 jogos.add(jogo);
             }
         } catch (Exception e) {
