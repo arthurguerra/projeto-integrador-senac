@@ -192,6 +192,8 @@ public class telaJogador extends javax.swing.JFrame {
             jogador.setTime(time);
             try {
                 jogadorDaoImpl.salvar(jogador);
+                JOptionPane.showMessageDialog(null, "Jogador salvo com sucesso!");
+                varNomeJogador.setText("");
             } catch (Exception ex) {
                 Logger.getLogger(telaJogador.class.getName()).log(Level.SEVERE, null, ex);
             }
