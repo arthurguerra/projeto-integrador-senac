@@ -42,6 +42,7 @@ public class telaModalidade extends javax.swing.JFrame {
         btAtualizar = new javax.swing.JButton();
         varNome = new javax.swing.JTextField();
         btPesquisar = new javax.swing.JButton();
+        btEcluir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTModalidade = new javax.swing.JTable();
@@ -71,6 +72,13 @@ public class telaModalidade extends javax.swing.JFrame {
             }
         });
 
+        btEcluir.setText("excluir");
+        btEcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,7 +91,9 @@ public class telaModalidade extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAtualizar))
+                        .addComponent(btAtualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btEcluir))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -104,7 +114,8 @@ public class telaModalidade extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCadastrar)
-                    .addComponent(btAtualizar))
+                    .addComponent(btAtualizar)
+                    .addComponent(btEcluir))
                 .addContainerGap())
         );
 
@@ -238,6 +249,15 @@ public class telaModalidade extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTModalidadeKeyReleased
 
+    private void btEcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEcluirActionPerformed
+        if (jTModalidade.getSelectedRow() != -1) {
+           int id = (int)jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 1);
+                  dao.excluir(id);
+                 buscaModalidade(txtNome.getText());
+
+        }
+    }//GEN-LAST:event_btEcluirActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -274,6 +294,7 @@ public class telaModalidade extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCadastrar;
+    private javax.swing.JButton btEcluir;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
