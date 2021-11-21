@@ -22,8 +22,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class telaAlteraJogador extends javax.swing.JFrame {
 
-    CampeonatoDaoImpl metodos = new CampeonatoDaoImpl();
-    Campeonato c = new Campeonato();
+    JogadorDaoImpl metodos = new JogadorDaoImpl();
+    Jogador j = new Jogador();
 
     /**
      * Creates new form telaTimes
@@ -126,7 +126,7 @@ public class telaAlteraJogador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "ID", "ID Time"
+                "Nome", "ID", "Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -200,11 +200,13 @@ public class telaAlteraJogador extends javax.swing.JFrame {
 
             //c = metodos.pesquisarPorId(jTCampeonatos.getSelectedRow());
             // c.setId((int)jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
-            c = metodos.pesquisarPorId((int) jTJogador.getValueAt(jTJogador.getSelectedRow(), 0));
-            c.setNome(txtNome.getText());
-
-            metodos.alterar(c);
-
+            j = metodos.pesquisarPorId((int) jTJogador.getValueAt(jTJogador.getSelectedRow(), 1));
+            j.setNome(txtNome.getText());
+            
+            metodos.alterar(j);
+            JOptionPane.showMessageDialog(null, "Jogador alterado com sucesso!");
+            txtNome.setText("");
+            busca(varNomeJogador.getText().trim());
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
@@ -223,7 +225,7 @@ public class telaAlteraJogador extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 p.getNome(),
                 p.getId(),
-                p.getTime()
+                p.getTime().getNome()
             });
 
         }
