@@ -51,6 +51,7 @@ public class telaAlteraJogador extends javax.swing.JFrame {
         btAtualizar = new javax.swing.JButton();
         varNomeJogador = new javax.swing.JTextField();
         btPesquisar = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTJogador = new javax.swing.JTable();
@@ -86,6 +87,13 @@ public class telaAlteraJogador extends javax.swing.JFrame {
             }
         });
 
+        btExcluir.setText("excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -97,12 +105,14 @@ public class telaAlteraJogador extends javax.swing.JFrame {
                         .addComponent(varNomeJogador, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(51, 51, 51)
-                        .addComponent(btAtualizar)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btExcluir)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
+                            .addGap(51, 51, 51)
+                            .addComponent(btAtualizar))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -118,7 +128,9 @@ public class telaAlteraJogador extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btAtualizar))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExcluir)
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jTJogador.setModel(new javax.swing.table.DefaultTableModel(
@@ -198,11 +210,9 @@ public class telaAlteraJogador extends javax.swing.JFrame {
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         if (jTJogador.getSelectedRow() != -1) {
 
-            //c = metodos.pesquisarPorId(jTCampeonatos.getSelectedRow());
-            // c.setId((int)jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
             j = metodos.pesquisarPorId((int) jTJogador.getValueAt(jTJogador.getSelectedRow(), 1));
             j.setNome(txtNome.getText());
-            
+
             metodos.alterar(j);
             JOptionPane.showMessageDialog(null, "Jogador alterado com sucesso!");
             txtNome.setText("");
@@ -214,6 +224,16 @@ public class telaAlteraJogador extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         busca(varNomeJogador.getText().trim());
     }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        if (jTJogador.getSelectedRow() != -1) {
+           
+            int id = (int)jTJogador.getValueAt(jTJogador.getSelectedRow(), 1);
+            metodos.excluir(id);
+            JOptionPane.showMessageDialog(null, "Jogador excluido com sucesso.");
+            busca(varNomeJogador.getText());
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     public void busca(String desc) {
 
@@ -338,6 +358,7 @@ public class telaAlteraJogador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
+    private javax.swing.JButton btExcluir;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
