@@ -181,6 +181,7 @@ public class telaTimes extends javax.swing.JFrame {
             Modalidade modalidade = modalidades.get(i);
             objeto.setModalidade(modalidade);
             timeDao.salvar(objeto);
+            JOptionPane.showMessageDialog(null, "Time salvo com sucesso!");
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
