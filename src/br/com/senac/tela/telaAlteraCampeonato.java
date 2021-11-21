@@ -9,7 +9,9 @@ import br.com.senac.dao.CampeonatoDaoImpl;
 import br.com.senac.dao.TimeDaoImpl;
 import br.com.senac.entidade.Campeonato;
 import br.com.senac.entidade.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -232,7 +234,6 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
             txtLocal.setText(jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 1).toString());
             txtInicio.setText(jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 2).toString());
             txtFim.setText(jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 3).toString());
-            
 
         }
     }//GEN-LAST:event_jTCampeonatosKeyReleased
@@ -243,11 +244,22 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
 
             //c = metodos.pesquisarPorId(jTCampeonatos.getSelectedRow());
             // c.setId((int)jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
-            c = metodos.pesquisarPorId((int) jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
+//            List<Campeonato> campeonatos = new ArrayList<>();
+//            campeonatos = metodos.pesquisarPorNome(jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0).toString());
+//            c = campeonatos.get(0);
+////            c = metodos.pesquisarPorId((int) jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
+//            c.setNome(txtNome.getText());
+//            c.setLocalidade(txtLocal.getText());
+//            metodos.alterar(c);
+
+            c = metodos.pesquisarPorId((int) jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 4));
             c.setNome(txtNome.getText());
-
+            c.setLocalidade(txtLocal.getText());
             metodos.alterar(c);
-
+            
+            JOptionPane.showMessageDialog(null, "Campeonato alterado com sucesso!");
+            varNomeTime.setText("");
+            busca(varNomeTime.getText().trim());
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
@@ -256,7 +268,7 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
         busca(varNomeTime.getText().trim());
     }//GEN-LAST:event_btPesquisarActionPerformed
 
-   public void busca(String desc) {
+    public void busca(String desc) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTCampeonatos.getModel();
         modelo.setNumRows(0);
@@ -264,19 +276,18 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
 
         for (Campeonato p : x.pesquisarPorNome(desc)) {
             modelo.addRow(new Object[]{
-              
                 p.getNome(),
                 p.getLocalidade(),
                 p.getInicio(),
                 p.getFim(),
                 p.getId()
-                
-                
+
             });
 
         }
 
     }
+
     /**
      * @param args the command line arguments
      */
