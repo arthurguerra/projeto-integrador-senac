@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,8 +116,10 @@ public class ModalidadeImpl {
             ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Modalidade excluída com sucesso");
         } catch (Exception e) {
             System.err.println("Erro ao EXCLUIR modalidade: "+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Existem times vinculados a essa modalidade");
         }
     }
 }

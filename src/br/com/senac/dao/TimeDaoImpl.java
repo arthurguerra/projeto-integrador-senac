@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,8 +130,10 @@ public class TimeDaoImpl {
             ps = conexao.prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Time excluido com sucesso");
         } catch (Exception e) {
             System.err.println("Erro ao LISTAR time: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Existem jogadores vinculados a este time");
         }
     }
 
