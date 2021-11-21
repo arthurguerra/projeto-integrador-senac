@@ -20,8 +20,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class telaAlteraTime extends javax.swing.JFrame {
 
-    CampeonatoDaoImpl metodos = new CampeonatoDaoImpl();
-    Campeonato c = new Campeonato();
+    TimeDaoImpl metodos = new TimeDaoImpl();
+    Time t = new Time();
 
     /**
      * Creates new form telaTimes
@@ -69,6 +69,12 @@ public class telaAlteraTime extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome:");
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         btAtualizar.setText("Atualizar");
         btAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +130,7 @@ public class telaAlteraTime extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "ID", "ID Modalidade"
+                "Nome", "ID", "Modalidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -198,11 +204,13 @@ public class telaAlteraTime extends javax.swing.JFrame {
 
             //c = metodos.pesquisarPorId(jTCampeonatos.getSelectedRow());
             // c.setId((int)jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
-            c = metodos.pesquisarPorId((int) jtTimes.getValueAt(jtTimes.getSelectedRow(), 0));
-            c.setNome(txtNome.getText());
+            t = metodos.pesquisarPorId((int) jtTimes.getValueAt(jtTimes.getSelectedRow(), 1));
+            t.setNome(txtNome.getText());
 
-            metodos.alterar(c);
-
+            metodos.alterar(t);
+            JOptionPane.showMessageDialog(null, "Time alterado com sucesso!");
+            txtNome.setText("");
+            busca("");
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
@@ -210,6 +218,10 @@ public class telaAlteraTime extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         busca(varNomeTime.getText().trim());
     }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
    public void busca(String desc) {
 
@@ -222,7 +234,7 @@ public class telaAlteraTime extends javax.swing.JFrame {
               
                 p.getNome(),
                 p.getId(),
-                p.getModalidade()
+                p.getModalidade().getNome()
             });
 
         }
