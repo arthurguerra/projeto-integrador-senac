@@ -47,16 +47,16 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="vraNomeModalidade" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="varNome" min="-2" pref="180" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btPesquisar" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="btAtualizar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="txtNome" min="-2" pref="230" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btAtualizar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btPesquisar" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -70,15 +70,15 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="vraNomeModalidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="varNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -109,7 +109,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAtualizarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="vraNomeModalidade">
+        <Component class="javax.swing.JTextField" name="varNome">
         </Component>
         <Component class="javax.swing.JButton" name="btPesquisar">
           <Properties>
@@ -134,7 +134,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="184" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="182" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -172,6 +172,10 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTModalidadeMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTModalidadeKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

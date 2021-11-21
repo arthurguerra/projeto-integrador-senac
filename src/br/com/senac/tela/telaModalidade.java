@@ -17,9 +17,9 @@ import javax.swing.table.TableRowSorter;
  */
 public class telaModalidade extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaModalidade2
-     */
+    ModalidadeImpl dao = new ModalidadeImpl();
+    Modalidade objeto = new Modalidade();
+
     public telaModalidade() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jTModalidade.getModel();
@@ -40,7 +40,7 @@ public class telaModalidade extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btCadastrar = new javax.swing.JButton();
         btAtualizar = new javax.swing.JButton();
-        vraNomeModalidade = new javax.swing.JTextField();
+        varNome = new javax.swing.JTextField();
         btPesquisar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -79,15 +79,15 @@ public class telaModalidade extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(vraNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAtualizar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -97,14 +97,14 @@ public class telaModalidade extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCadastrar)
-                    .addComponent(btAtualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addComponent(btPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vraNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btPesquisar))
+                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCadastrar)
+                    .addComponent(btAtualizar))
                 .addContainerGap())
         );
 
@@ -124,6 +124,16 @@ public class telaModalidade extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTModalidadeMouseClicked(evt);
+            }
+        });
+        jTModalidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTModalidadeKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTModalidade);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -136,7 +146,7 @@ public class telaModalidade extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,24 +174,22 @@ public class telaModalidade extends javax.swing.JFrame {
 //        dtmModalidade.addRow(dados);
         if (!validarNome()) {
 
-            ModalidadeImpl x = new ModalidadeImpl();
-            Modalidade m = new Modalidade();
-            m.setNome(txtNome.getText().trim());
-            x.salvar(m);
+            objeto.setNome(varNome.getText().trim());
+            dao.salvar(objeto);
             JOptionPane.showMessageDialog(null, "Modalidade salva com sucesso");
-            txtNome.setText("");
+            varNome.setText("");
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private boolean validarNome() {
-        if (txtNome.getText().trim().length() < 3) {
+        if (varNome.getText().trim().length() < 3) {
             JOptionPane.showMessageDialog(null, "Insira uma modalidade válida");
             return true;
         }
 
         return false;
     }
-    
+
     public void buscaModalidade(String desc) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTModalidade.getModel();
@@ -190,7 +198,6 @@ public class telaModalidade extends javax.swing.JFrame {
 
         for (Modalidade p : x.pesquisarPorNome(desc)) {
             modelo.addRow(new Object[]{
-              
                 p.getNome(),
                 p.getId()
             });
@@ -201,46 +208,36 @@ public class telaModalidade extends javax.swing.JFrame {
 
 
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
+        if (jTModalidade.getSelectedRow() != -1) {
+            objeto = dao.pesquisarPorId((int) jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 1));
+            objeto.setNome(varNome.getText());
 
+            dao.alterar(objeto);
+
+            JOptionPane.showMessageDialog(null, "Campeonato alterado com sucesso!");
+            varNome.setText("");
+            buscaModalidade(txtNome.getText().trim());
+        }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         buscaModalidade(txtNome.getText().trim());
     }//GEN-LAST:event_btPesquisarActionPerformed
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     private void jTModalidadeMouseClicked(java.awt.event.MouseEvent evt) {                                     
-        // TODO add your handling code here:
+    private void jTModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTModalidadeMouseClicked
         if (jTModalidade.getSelectedRow() != -1) {
-            txtNome.setText(jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 0).toString());
+            varNome.setText(jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 0).toString());
 
         }
-    }                                    
+    }//GEN-LAST:event_jTModalidadeMouseClicked
 
-    private void jtTimesKeyReleased(java.awt.event.KeyEvent evt) {                                    
+    private void jTModalidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTModalidadeKeyReleased
         if (jTModalidade.getSelectedRow() != -1) {
-            txtNome.setText(jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 0).toString());
+            varNome.setText(jTModalidade.getValueAt(jTModalidade.getSelectedRow(), 0).toString());
 
         }
-    }   
-    
-    
-    
-    
-    
+    }//GEN-LAST:event_jTModalidadeKeyReleased
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -284,6 +281,6 @@ public class telaModalidade extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTModalidade;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField vraNomeModalidade;
+    private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
 }
