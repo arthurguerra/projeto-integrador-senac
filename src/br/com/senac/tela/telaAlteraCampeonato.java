@@ -242,15 +242,6 @@ public class telaAlteraCampeonato extends javax.swing.JFrame {
     private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         if (jTCampeonatos.getSelectedRow() != -1) {
 
-            //c = metodos.pesquisarPorId(jTCampeonatos.getSelectedRow());
-            // c.setId((int)jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
-//            List<Campeonato> campeonatos = new ArrayList<>();
-//            campeonatos = metodos.pesquisarPorNome(jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0).toString());
-//            c = campeonatos.get(0);
-////            c = metodos.pesquisarPorId((int) jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 0));
-//            c.setNome(txtNome.getText());
-//            c.setLocalidade(txtLocal.getText());
-//            metodos.alterar(c);
 
             c = metodos.pesquisarPorId((int) jTCampeonatos.getValueAt(jTCampeonatos.getSelectedRow(), 4));
             c.setNome(txtNome.getText());

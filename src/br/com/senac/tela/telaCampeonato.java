@@ -184,7 +184,7 @@ public class telaCampeonato extends javax.swing.JFrame {
             Campeonato campeonato = new Campeonato();
             campeonato.setNome(varNome.getText().trim());
             campeonato.setLocalidade(varLocal.getText().trim());
-            //  campeonato.setDtcampeonato(new Date(varData.getText().trim()));
+          
             
             CampeonatoDaoImpl campeonatoDaoImpl = new CampeonatoDaoImpl();
             campeonatoDaoImpl.salvar(campeonato);
