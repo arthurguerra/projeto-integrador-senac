@@ -30,42 +30,62 @@ public class telaInicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btCampeonato = new javax.swing.JButton();
         btTimes = new javax.swing.JButton();
+        btJogadores = new javax.swing.JButton();
+        btModalidades = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        campeonatoas = new javax.swing.JLabel();
+        times = new javax.swing.JLabel();
+        Jogadores = new javax.swing.JLabel();
+        Jogadores1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btTimes1 = new javax.swing.JButton();
-        btModalidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btCampeonato.setText("Campeonatos");
+        btCampeonato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/senac/imagens/campeonatosIcon72px.png"))); // NOI18N
         btCampeonato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCampeonatoActionPerformed(evt);
             }
         });
 
-        btTimes.setText("times");
+        btTimes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/senac/imagens/timesIcon72px.png"))); // NOI18N
+        btTimes.setToolTipText("");
         btTimes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btTimesActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("Central de campeonatos");
-
-        btTimes1.setText("Jogadores");
-        btTimes1.addActionListener(new java.awt.event.ActionListener() {
+        btJogadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/senac/imagens/jogadoresIcon72px.png"))); // NOI18N
+        btJogadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btTimes1ActionPerformed(evt);
+                btJogadoresActionPerformed(evt);
             }
         });
 
-        btModalidade.setText("Modalidades");
-        btModalidade.addActionListener(new java.awt.event.ActionListener() {
+        btModalidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/senac/imagens/modalidadesIcon72px.png"))); // NOI18N
+        btModalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btModalidadeActionPerformed(evt);
+                btModalidadesActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel2.setText("Gerenciamento de campeonatos");
+
+        campeonatoas.setFont(new java.awt.Font("Bahnschrift", 0, 11)); // NOI18N
+        campeonatoas.setText("Campeonatos");
+
+        times.setFont(new java.awt.Font("Bahnschrift", 0, 11)); // NOI18N
+        times.setText("Times");
+
+        Jogadores.setFont(new java.awt.Font("Bahnschrift", 0, 11)); // NOI18N
+        Jogadores.setText("Jogadores");
+
+        Jogadores1.setFont(new java.awt.Font("Bahnschrift", 0, 11)); // NOI18N
+        Jogadores1.setText("Modalidades");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/senac/imagens/podium_icon_124468.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,48 +94,66 @@ public class telaInicio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btCampeonato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btTimes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(171, 171, 171)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btTimes1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jLabel1)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campeonatoas)
+                            .addComponent(btTimes, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btCampeonato, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(240, 240, 240)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Jogadores1)
+                            .addComponent(btModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(times)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jogadores)
+                .addGap(91, 91, 91))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btTimes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btJogadores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCampeonato, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btTimes, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btTimes1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59))
+                    .addComponent(Jogadores)
+                    .addComponent(times))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Jogadores1)
+                            .addComponent(campeonatoas)))
+                    .addComponent(btCampeonato, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -130,13 +168,17 @@ public class telaInicio extends javax.swing.JFrame {
         new telaTimes().setVisible(true);
     }//GEN-LAST:event_btTimesActionPerformed
 
-    private void btTimes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimes1ActionPerformed
+    private void btJogadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btJogadoresActionPerformed
         new telaJogador().setVisible(true);
-    }//GEN-LAST:event_btTimes1ActionPerformed
+    }//GEN-LAST:event_btJogadoresActionPerformed
 
     private void btModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModalidadeActionPerformed
       new telaModalidade().setVisible(true);
     }//GEN-LAST:event_btModalidadeActionPerformed
+
+    private void btModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModalidadesActionPerformed
+          new telaModalidade().setVisible(true);
+    }//GEN-LAST:event_btModalidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,11 +216,16 @@ public class telaInicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Jogadores;
+    private javax.swing.JLabel Jogadores1;
     private javax.swing.JButton btCampeonato;
-    private javax.swing.JButton btModalidade;
+    private javax.swing.JButton btJogadores;
+    private javax.swing.JButton btModalidades;
     private javax.swing.JButton btTimes;
-    private javax.swing.JButton btTimes1;
+    private javax.swing.JLabel campeonatoas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel times;
     // End of variables declaration//GEN-END:variables
 }
