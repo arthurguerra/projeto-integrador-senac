@@ -30,11 +30,11 @@ public class TimeDaoImplTest {
         modalidadeImpl = new ModalidadeImpl();
     }
 
-//    @Test 
+    //@Test 
     public void testSalvar() throws Exception {
         System.out.println("salvar");
         time = new Time();
-        time.setNome("TIME TESTE");
+        time.setNome("teste excluir");
         modalidade = modalidadeImpl.pesquisarPorId(1);
         time.setModalidade(modalidade);
         timeDaoImpl.salvar(time);
@@ -56,7 +56,7 @@ public class TimeDaoImplTest {
         imprimeTime(time);
     }
     
-   @Test
+  // @Test
     public void testPesquisarPorNome() {
         System.out.println("Pesquisar por NOME");
         List<Time> times = new LinkedList<>();
@@ -76,10 +76,10 @@ public class TimeDaoImplTest {
         });
     }
     
-//    @Test
+  //@Test
     public void testExcluir(){
         System.out.println("excluir");
-        timeDaoImpl.excluir(5);
+        timeDaoImpl.excluir(12);
     }
     
     private void imprimeTime(Time time){

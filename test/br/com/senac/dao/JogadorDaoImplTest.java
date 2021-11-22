@@ -38,11 +38,12 @@ public class JogadorDaoImplTest {
         jogadorDaoImpl.salvar(jogador);
     }
 
-//    @Test
+   //@Test
     public void testAlterar() {
-        System.out.println("alterar");
-        jogador = jogadorDaoImpl.pesquisarPorId(1);
-        jogador.setNome("Romário");
+       
+        jogador = jogadorDaoImpl.pesquisarPorId(3);
+       
+        
         time = timeDaoImpl.pesquisarPorId(4);
         jogador.setTime(time);
         jogadorDaoImpl.alterar(jogador);
@@ -75,7 +76,7 @@ public class JogadorDaoImplTest {
         });
     }
 
-//    @Test
+
     public void testExcluir() {
         System.out.println("excluir");
         jogadorDaoImpl.excluir(5);
