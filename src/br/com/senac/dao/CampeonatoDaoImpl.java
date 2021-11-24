@@ -32,8 +32,12 @@ public class CampeonatoDaoImpl {
             ps = conexao.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, campeonato.getNome());
             ps.setString(2, campeonato.getLocalidade());
+            
+          
+
+            
             ps.setDate(3, new Date(campeonato.getInicio().getTime()));
-            ps.setDate(4, new Date(campeonato.getFim().getTime()));
+           ps.setDate(4, new Date(campeonato.getFim().getTime()));
             ps.executeUpdate();
             resultado = ps.getGeneratedKeys();
             resultado.next();

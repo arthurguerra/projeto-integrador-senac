@@ -5,7 +5,7 @@
  */
 package br.com.senac.entidade;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *

@@ -28,7 +28,7 @@ public class CampeonatoDaoImplTest {
 //    @Test
     public void testSalvar() throws Exception {
         System.out.println("SALVAR");
-        campeonato = new Campeonato("Campeonato América", "América", new Date(), new Date());
+     //   campeonato = new Campeonato("Campeonato América", "América", new Date(), new Date());
         campeonatoDaoImpl.salvar(campeonato);
     }
 
@@ -38,9 +38,9 @@ public class CampeonatoDaoImplTest {
         campeonato = campeonatoDaoImpl.pesquisarPorId(6);
         campeonato.setNome("Olimpiadas 2024");
         campeonato.setLocalidade("Rússia");
-        campeonato.setInicio(new Date());
-        campeonato.setInicio(new Date(2020, 06, 28));
-        campeonato.setFim(new Date());
+//        campeonato.setInicio(new Date());
+//        campeonato.setInicio(new Date(2020, 06, 28));
+//        campeonato.setFim(new Date());
         //ver como coloca uma data especifica
         campeonatoDaoImpl.alterar(campeonato);
     }
@@ -64,7 +64,7 @@ public class CampeonatoDaoImplTest {
         });
     }
 
-  @Test
+ // @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisar por nome");
         List<Campeonato> campeonatos = new ArrayList();
